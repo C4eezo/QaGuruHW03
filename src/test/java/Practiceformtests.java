@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 
 
-public class practiceformtests {
+public class Practiceformtests {
 
     @BeforeAll
     static void beforeAll() {
@@ -17,7 +17,6 @@ public class practiceformtests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 5000; // default 4000
     }
 
     @Test
@@ -27,8 +26,11 @@ public class practiceformtests {
         $("#lastName").setValue("Palich");
         $("#userEmail").setValue("mihal@terentev.com");
         $("[for='gender-radio-1']").click();
-        $("#userNumber").setValue("89994304300");
-        $("#dateOfBirthInput").setValue("15 Feb 1990");
+        $("#userNumber").setValue("9994304300");
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__year-select").selectOption("1990");
+        $(".react-datepicker__month-select").selectOption("February");
+        $(".react-datepicker__day--015").click();
         $("#subjectsInput").val("Maths").pressEnter();
         $("[for='hobbies-checkbox-1']").click();
         $("[for='hobbies-checkbox-3']").click();
@@ -44,7 +46,7 @@ public class practiceformtests {
         $(".table-responsive").shouldHave(text("Mihal Palich "));
         $(".table-responsive").shouldHave(text("mihal@terentev.com"));
         $(".table-responsive").shouldHave(text("Male"));
-        $(".table-responsive").shouldHave(text("89994304300"));
+        $(".table-responsive").shouldHave(text("9994304300"));
         $(".table-responsive").shouldHave(text("15 February,1990"));
         $(".table-responsive").shouldHave(text("Math"));
         $(".table-responsive").shouldHave(text("Sports, Music"));
